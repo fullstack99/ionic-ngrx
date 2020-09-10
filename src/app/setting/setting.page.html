@@ -1,0 +1,128 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Setting </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Setting</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <form (ngSubmit)="updateInfo()" [formGroup]="userForm">
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">First Name </ion-label>
+            <ion-input formControlName="firstName"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container
+              *ngFor="let validation of validation_messages.firstName"
+            >
+              <div
+                class="error ion-padding"
+                *ngIf="userForm.get('firstName').hasError(validation.type) && (userForm.get('firstName').dirty || userForm.get('firstName').touched)"
+              >
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input formControlName="lastName" required="true"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container
+              *ngFor="let validation of validation_messages.lastName"
+            >
+              <span
+                class="error ion-padding"
+                *ngIf="userForm.get('lastName').hasError(validation.type) && (userForm.get('lastName').dirty || userForm.get('lastName').touched)"
+              >
+                {{ validation.message }}
+              </span>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Date of Birthday</ion-label>
+            <ion-datetime
+              (ionChange)="getDate($event)"
+              formControlName="dob"
+            ></ion-datetime>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.dob">
+              <span
+                class="error ion-padding"
+                *ngIf="userForm.get('dob').hasError(validation.type) && (userForm.get('dob').dirty || userForm.get('dob').touched)"
+              >
+                {{ validation.message }}
+              </span>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div
+                class="error ion-padding"
+                *ngIf="userForm.get('email').hasError(validation.type) && (userForm.get('email').dirty || userForm.get('email').touched)"
+              >
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Username</ion-label>
+            <ion-input formControlName="userName"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container
+              *ngFor="let validation of validation_messages.userName"
+            >
+              <div
+                class="error ion-padding"
+                *ngIf="userForm.get('userName').hasError(validation.type) && (userForm.get('userName').dirty || userForm.get('userName').touched)"
+              >
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            color="primary"
+            expand="full"
+            [disabled]="!userForm.valid"
+            type="submit"
+            >Update</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>
