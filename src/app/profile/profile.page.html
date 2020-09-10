@@ -43,11 +43,7 @@
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Day of Birth</ion-label>
-      <ion-input
-        type="text"
-        readonly
-        value="{{(user$ | async).dob}}"
-      ></ion-input>
+      <ion-datetime readonly value="{{(user$ | async).dob}}"></ion-datetime>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Phone Number</ion-label>
